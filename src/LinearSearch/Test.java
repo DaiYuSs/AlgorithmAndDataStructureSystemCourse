@@ -1,5 +1,7 @@
 package LinearSearch;
 
+import utils.ArrayGenerator;
+
 /**
  * 测试类
  *
