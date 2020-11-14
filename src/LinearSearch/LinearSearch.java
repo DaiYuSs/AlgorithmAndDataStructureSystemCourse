@@ -21,7 +21,7 @@ public class LinearSearch<T> {
      * @param <T>    泛型，需要调用equals
      * @return 返回target的下标，如果没找到就返回-1
      */
-    static <T> int search(T[] data, T target) {
+    public static <T> int search(T[] data, T target) {
         for (int i = 0; i < data.length; i++) {
             // equals比==更准确
             if (data[i].equals(target)) {
