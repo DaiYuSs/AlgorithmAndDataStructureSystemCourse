@@ -1,5 +1,9 @@
 package Sort;
 
+import utils.ArrayGenerator;
+
+import static utils.ArrayUtil.swap;
+
 /**
  * 选中排序类
  *
@@ -33,38 +37,7 @@ public class SelectionSort {
         }
     }
 
-    /**
-     * 交换数组中的两个位置的值
-     *
-     * @param arr 交换的数组
-     * @param i   坐标i
-     * @param j   坐标j
-     * @author ljj
-     * @date 2020/11/14 16:06
-     */
-    private static <E> void swap(E[] arr, int i, int j) {
-        E t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
-
     public static void main(String[] args) {
-        Integer[] arr = {1, 4, 2, 3, 6, 5, 0};
-        SelectionSort.sort(arr);
-        for (int e : arr) {
-            System.out.print(e + " ");
-        }
-        System.out.println();
-
-        Student[] students = {
-                new Student("zhangsan", 90),
-                new Student("lisi", 100),
-                new Student("wangwu", 60)
-        };
-        SelectionSort.sort(students);
-        for (Student student : students) {
-            System.out.print(student + " ");
-        }
-        System.out.println();
+        SortingHelper.sortTest(SelectionSort.class.getName(), ArrayGenerator.generateRandomArray(10000, 10000));
     }
 }
