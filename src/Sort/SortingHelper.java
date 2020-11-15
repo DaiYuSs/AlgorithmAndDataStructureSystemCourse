@@ -1,4 +1,4 @@
-package SelectionSort;
+package Sort;
 
 /**
  * 排序助手
