@@ -43,6 +43,8 @@ public class SortingHelper {
 
         if (SelectionSort.class.getName().equals(sortName)) {
             SelectionSort.sort(arr);
+        } else if (InsertionSort.class.getName().equals(sortName)) {
+            InsertionSort.sort(arr);
         }
 
         long endTime = System.nanoTime();
