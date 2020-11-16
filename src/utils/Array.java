@@ -105,7 +105,7 @@ public class Array<E> {
      */
     public void add(int index, E e) {
         if (size == data.length) {
-            data = Arrays.copyOf(data, data.length * 2);
+            resize(data.length * 2);
         }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
@@ -192,6 +192,9 @@ public class Array<E> {
         E ret = data[index];
         System.arraycopy(data, index + 1, data, index, size - index);
         size--;
+        if (data.length / 2 == size) {
+            resize(data.length / 2);
+        }
         return ret;
     }
 
@@ -229,6 +232,17 @@ public class Array<E> {
         if (index == -1) {
             remove(index);
         }
+    }
+
+    /**
+     * 对数组重新分配容量
+     *
+     * @param newCapacity 新的容量
+     * @author ljj
+     * @date 2020/11/16
+     */
+    private void resize(int newCapacity) {
+        data = Arrays.copyOf(data, newCapacity);
     }
 
     @Override
