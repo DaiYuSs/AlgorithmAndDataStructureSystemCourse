@@ -9,12 +9,12 @@ import java.util.Arrays;
  * @version 1.0
  * @date 2020/11/15
  */
-public class Array {
+public class Array<E> {
 
     /**
      * 存储数据的数组
      */
-    private int[] data;
+    private E[] data;
 
     /**
      * 数组元素的个数
@@ -39,7 +39,7 @@ public class Array {
      * @date 2020/11/15
      */
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -82,7 +82,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/15
      */
-    public void addLast(int e) {
+    public void addLast(E e) {
         add(size, e);
     }
 
@@ -93,7 +93,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/15
      */
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
@@ -103,7 +103,7 @@ public class Array {
      * @param index 指定位置
      * @param e     新元素
      */
-    public void add(int index, int e) {
+    public void add(int index, E e) {
         if (size == data.length) {
             data = Arrays.copyOf(data, data.length * 2);
         }
@@ -123,7 +123,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Require index >= 0 and index <= size.");
         }
@@ -138,7 +138,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Require index >= 0 and index <= size.");
         }
@@ -151,9 +151,9 @@ public class Array {
      * @param e 值
      * @return true包含，false不包含
      */
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return true;
             }
         }
@@ -168,9 +168,9 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public int find(int e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -185,14 +185,12 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Remove failed. Require index >= 0 and index <= size.");
         }
-        int ret = data[index];
-        for (int i = index + 1; i < size; i++) {
-            data[i - 1] = i;
-        }
+        E ret = data[index];
+        System.arraycopy(data, index + 1, data, index, size - index);
         size--;
         return ret;
     }
@@ -204,7 +202,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
@@ -215,7 +213,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
@@ -226,7 +224,7 @@ public class Array {
      * @author ljj
      * @date 2020/11/16
      */
-    public void removeElement(int e) {
+    public void removeElement(E e) {
         int index = find(e);
         if (index == -1) {
             remove(index);
