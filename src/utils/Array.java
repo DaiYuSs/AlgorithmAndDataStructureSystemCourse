@@ -192,7 +192,7 @@ public class Array<E> {
         E ret = data[index];
         System.arraycopy(data, index + 1, data, index, size - index);
         size--;
-        if (data.length / 2 == size) {
+        if (data.length / 4 == size && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
