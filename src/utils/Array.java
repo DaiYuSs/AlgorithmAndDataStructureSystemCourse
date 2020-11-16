@@ -105,7 +105,7 @@ public class Array {
      */
     public void add(int index, int e) {
         if (size == data.length) {
-            // 开辟新的数组
+            data = Arrays.copyOf(data, data.length * 2);
         }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
@@ -113,6 +113,124 @@ public class Array {
         System.arraycopy(data, index, data, index + 1, size - index);
         data[index] = e;
         size++;
+    }
+
+    /**
+     * 获取 index 索引位置的元素
+     *
+     * @param index 索引
+     * @return 索引对应值
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed. Require index >= 0 and index <= size.");
+        }
+        return data[index];
+    }
+
+    /**
+     * 修改 index 索引位置的元素为 e
+     *
+     * @param index 索引
+     * @param e     修改值
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public void set(int index, int e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set failed. Require index >= 0 and index <= size.");
+        }
+        data[index] = e;
+    }
+
+    /**
+     * 是否包含 e 元素
+     *
+     * @param e 值
+     * @return true包含，false不包含
+     */
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找数组中元素 e 的所在位置
+     *
+     * @param e 值
+     * @return int e 的索引，不存在 e 则返回-1
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 删除 index 位置的元素，返回被删除的元素
+     *
+     * @param index 索引
+     * @return int
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Require index >= 0 and index <= size.");
+        }
+        int ret = data[index];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = i;
+        }
+        size--;
+        return ret;
+    }
+
+    /**
+     * 删除第一个元素，返回被删除的元素
+     *
+     * @return int
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 删除最后一个元素，返回被删除的元素
+     *
+     * @return int
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    /**
+     * 删除第一个元素 e
+     *
+     * @param e 元素 e
+     * @author ljj
+     * @date 2020/11/16
+     */
+    public void removeElement(int e) {
+        int index = find(e);
+        if (index == -1) {
+            remove(index);
+        }
     }
 
     @Override
