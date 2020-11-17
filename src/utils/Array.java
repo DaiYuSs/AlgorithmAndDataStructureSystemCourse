@@ -212,7 +212,7 @@ public class Array<E> {
             throw new IllegalArgumentException("Remove failed. Require index >= 0 and index <= size.");
         }
         E ret = data[index];
-        System.arraycopy(data, index + 1, data, index, size - index);
+        System.arraycopy(data, index + 1, data, index, size - index - 1);
         size--;
         if (data.length / 4 == size && data.length / 2 != 0) {
             resize(data.length / 2);
