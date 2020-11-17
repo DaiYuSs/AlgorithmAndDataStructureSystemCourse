@@ -131,6 +131,28 @@ public class Array<E> {
     }
 
     /**
+     * 获取第一个元素
+     *
+     * @return E 元素
+     * @author ljj
+     * @date 2020/11/17
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /**
+     * 获取最后一个元素
+     *
+     * @return E 元素
+     * @author ljj
+     * @date 2020/11/17
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
      * 修改 index 索引位置的元素为 e
      *
      * @param index 索引
