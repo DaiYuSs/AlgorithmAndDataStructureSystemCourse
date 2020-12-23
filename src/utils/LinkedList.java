@@ -116,6 +116,87 @@ public class LinkedList<E> {
     }
 
     /**
+     * 获得链表第index个位置的元素
+     *
+     * @param index 索引-1的位置
+     * @return E 元素值
+     * @author ljj
+     * @date 2020/12/23
+     */
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        while (index-- != 0) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    /**
+     * 获得链表第一个位置的元素
+     *
+     * @return E 元素值
+     * @author ljj
+     * @date 2020/12/23
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /**
+     * 获得链表最后一个个位置的元素
+     *
+     * @return E 元素值
+     * @author ljj
+     * @date 2020/12/23
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
+     * 将链表第 index 个元素值修改成 e
+     *
+     * @param index 位置
+     * @param e     新值
+     * @author ljj
+     * @date 2020/12/23
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set failed. Illegal index.");
+        }
+
+        Node cur = dummyHead;
+        while (index-- != 0) {
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    /**
+     * 判断元素是否存在链表中
+     *
+     * @param e 查找的元素
+     * @return boolean
+     * @author ljj
+     * @date 2020/12/23
+     */
+    public boolean contains(E e) {
+        Node cur = dummyHead.next;
+        while (cur.next != null) {
+            if (cur.e.equals(e)) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    /**
      * 获取链表中的元素个数
      *
      * @return int 链表长度
@@ -135,5 +216,18 @@ public class LinkedList<E> {
      */
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            res.append(cur).append("->");
+            cur = cur.next;
+        }
+        res.append("NULL");
+        return res.toString();
     }
 }
