@@ -47,7 +47,7 @@ public class LinkedList<E> {
     /**
      * 链表的虚拟头节点
      */
-    private Node dummyHead;
+    private final Node dummyHead;
     /**
      * 链表的长度
      */
